@@ -1,0 +1,658 @@
+local player = game.Players.LocalPlayer
+local RS = game.ReplicatedStorage
+local Event = RS.GameEvents
+
+local TweenService = game:GetService("TweenService")
+local TweenInf = TweenInfo.new(3, Enum.EasingStyle.Sine, Enum.EasingDirection.In,0, false, 0)
+local slow = TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
+local buttonreveal = TweenInfo.new(3, Enum.EasingStyle.Bounce)
+local UIS = game:GetService("UserInputService")
+local TPService = game:GetService("TeleportService")
+local gameID = 120044951929980
+
+
+local bGUI = script.Parent.Beginning
+local blackFrame = bGUI.blackFrame
+local dialouge = bGUI.messages
+local button1 = bGUI.PlayButton
+--local button2 = bGUI.AboutTheGame
+local button3 = bGUI.Credits
+local button4 = bGUI["cutscene's button"]
+
+local camFolder = game.Workspace.cameras
+local camera = game.Workspace.CurrentCamera
+
+
+
+Event.StartGame.OnClientEvent:Connect(function()
+	player.Character:WaitForChild("Humanoid").WalkSpeed = 0
+	camera.CameraType = Enum.CameraType.Scriptable
+	camera.CFrame = camFolder.FronthandCam.CFrame
+	blackFrame.Visible = true
+	TweenService:Create(blackFrame,TweenInf,{BackgroundTransparency = 0}):Play()
+	repeat wait() until game:IsLoaded()
+	dialouge.Visible = true
+	--dialouge.Text = "Greetings!"
+	--wait(2)
+	--dialouge.Text = "You're Playing. . ."
+	wait(1)
+	local name = script.Parent.TitleScreen.GameName
+	local back = script.Parent.TitleScreen.Frame
+	back.Visible = true
+	name.Visible = true
+	TweenService:Create(name,slow,{TextTransparency = 0}):Play()
+	TweenService:Create(back,slow,{BackgroundTransparency = .7}):Play()
+	wait(1)
+	dialouge.Text = ""
+	wait(1)
+	TweenService:Create(blackFrame,TweenInf,{BackgroundTransparency = 1}):Play()
+	wait(4)
+	button1.Visible = true
+	TweenService:Create(button1,buttonreveal,{BackgroundTransparency = .7}):Play()
+	TweenService:Create(button1,buttonreveal,{TextTransparency = 0}):Play()
+	wait(2)
+	--button2.Visible = true
+	--TweenService:Create(button2,buttonreveal,{BackgroundTransparency = .7}):Play()
+	--TweenService:Create(button2,buttonreveal,{TextTransparency = 0}):Play()
+	wait(2)
+	button3.Visible = true
+	TweenService:Create(button3,buttonreveal,{BackgroundTransparency = .7}):Play()
+	TweenService:Create(button3,buttonreveal,{TextTransparency = 0}):Play()
+	wait(2)
+	button4.Visible = true
+	TweenService:Create(button4,buttonreveal,{BackgroundTransparency = .7}):Play()
+	TweenService:Create(button4,buttonreveal,{TextTransparency = 0}):Play()
+end)
+
+// ^^ THIS IS JUST CODE FOR THE BEGINNING OF THE GAME AKA THE MENU SCREEN, PLEASE ACTUALLY PLAY THE GAME!! THERES MORE CONTENT I SWEAR! ^^
+// WHATS BELOW IS ONLY **SOME** PARTS FROM "THE BEGINNING" GAME, THERES A LOT TO DO EVEN THOUGH THERES NOT A LOT SHOWN! ALSO PLEASE DONT JUDGE THE BAD ANIMATIONS AND SUCH, I SUCK AT EVERYTHING ELSE
+
+local RS = game.ReplicatedStorage
+local Events = RS.GameEvents
+local ts = game:GetService("TweenService")
+local Teleporter = game:GetService("TeleportService")
+local TeleportID = 107026650320655
+local BadgeService = game:GetService("BadgeService")
+local BadgeID = 2347532610076482
+local TriggerBadgeID = 3629190016498351
+local ti = TweenInfo.new(3,Enum.EasingStyle.Sine)
+
+local blackFrame = script.Parent.DialougeUI.lackyFramey
+local dialouge = script.Parent.DialougeUI.Dialouge
+local player = game.Players.LocalPlayer
+
+local triggerB = workspace.TriggerWalking
+local triggerC = workspace.triggerCry
+local triggerK = workspace.TriggerKitchen
+local user = workspace.Animate
+local tMaster = workspace.tMasterComfurt
+local tag = workspace.tMasterPoint
+local seeker = workspace.hnSeekerComfurt
+local userWA = user.Wait
+local tMWA = tMaster.wait
+local SeekerWA = seeker.wait
+local animB = triggerB.wait
+local animC = triggerC.Wait
+local animK = triggerK.Wait
+local tagA = tag.wait
+local triggerBHumanoid = triggerB.Humanoid
+local triggerCHumanoid = triggerC.Humanoid
+local triggerKHumanoid = triggerK.Humanoid
+local userHumanoid = user.Humanoid
+local tMasterHumanoid = tMaster.Humanoid
+local tagHumanoid = tag.Humanoid
+local seekerHumanoid = seeker.Humanoid
+local waitingB = triggerBHumanoid:LoadAnimation(animB)
+local waitingC = triggerCHumanoid:LoadAnimation(animC)
+local waitingK = triggerKHumanoid:LoadAnimation(animK)
+local userW = userHumanoid:LoadAnimation(userWA)
+local tMW = tMasterHumanoid:LoadAnimation(tMWA)
+local tagW = tagHumanoid:LoadAnimation(tagA)
+local seekerW = seekerHumanoid:LoadAnimation(SeekerWA)
+local SFX = game.Workspace.SoundsFolder
+waitingB:Play()
+waitingC:Play()
+waitingK:Play()
+userW:Play()
+tMW:Play()
+tagW:Play()
+seekerW:Play()
+waitingB.Looped = true
+waitingC.Looped = true
+waitingK.Looped = true
+userW.Looped = true
+tMW.Looped = true
+tagW.Looped = true
+seekerW.Looped = true
+
+
+Events.SuddenDoorEvent.OnClientEvent:Connect(function()
+	SFX["Door Long Squeaks 20 (SFX)"]:Play()
+	dialouge.Text = "..."
+	for i,door in pairs(workspace.n.doorAnim:GetDescendants()) do
+		if door:IsA("Part") then
+			door.CanCollide = false
+			door.CanQuery = false
+			door.CanTouch = false
+			door.Transparency = 1
+		elseif door:IsA("WedgePart") then
+			door.CanCollide = false
+			door.CanQuery = false
+			door.CanTouch = false
+			door.Transparency = 1
+		elseif door:IsA("CornerWedgePart") then
+			door.CanCollide = false
+			door.CanQuery = false
+			door.CanTouch = false
+			door.Transparency = 1
+		end
+	end
+end)
+
+
+Events.SecertEvent1.OnClientEvent:Connect(function()
+	player.Character:WaitForChild('Humanoid').WalkSpeed = 0
+	local instr = script.Parent.DialougeUI.instructions
+	instr.Text = ""
+	repeat wait() until game:IsLoaded()
+	--ts:Create(blackFrame,ti,{BackgroundTransparency = 0}):Play()
+	wait(1)
+	SFX.lockedDoor:Play()
+	wait(2)
+	--ts:Create(blackFrame,ti,{BackgroundTransparency = 1}):Play()
+	dialouge.Text = "That's weird. . why is my bedroom door locked?"
+	wait(1)
+	player.Character:WaitForChild('Humanoid').WalkSpeed = 7
+	wait(3)
+	dialouge.Text = ""
+end)
+
+Events.NoteEvent.OnClientEvent:Connect(function()
+	player.Character:WaitForChild('Humanoid').WalkSpeed = 0
+	local instr = script.Parent.DialougeUI.instructions
+	instr.Text = "Press C to Close the Note"
+	local note = script.Parent.NoteGUI
+	local notePaper = script.Parent.NoteGUI.notePaper
+	local Text1 = script.Parent.NoteGUI.TextA
+	local Text2 = script.Parent.NoteGUI.TextB
+	note.Enabled = true
+	wait(.5)
+	dialouge.Text = "Hmmm...? Where'd this note come from..."
+	wait(2)
+	dialouge.Text = "I don't know anybody ages 13-15..."
+	wait(3)
+	dialouge.Text = "What is going on..."
+	wait(2)
+	dialouge.Text = ""
+	--ts:Create(notePaper,ti,{BackgroundTransparency = 1}):Play()
+--	ts:Create(Text1,ti,{TextTransparency = 1}):Play()
+	--ts:Create(Text2,ti,{TextTransparency = 1}):Play()
+	local UIS = game:GetService("UserInputService")
+	UIS.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.Keyboard or input.UserInputType == Enum.UserInputType.Touch then
+			if input.KeyCode == Enum.KeyCode.C or input.UserInputType == Enum.UserInputType.Touch then
+				note.Enabled = false
+				player.Character:WaitForChild('Humanoid').WalkSpeed = 7
+				instr.Text = ""
+				dialouge.Text = ""
+			end
+		end
+	end)
+	--wait(2)
+	--dialouge.Text = ""
+end)
+
+Events.TrapperTrigger1.OnClientEvent:Connect(function()
+	local trap = workspace.InvisWall
+	local debounce = nil
+	trap.Touched:Connect(function(hit)
+		local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+		if player and debounce == nil then
+			SFX.lightShortCircuiting:Play()
+			waitingC.Looped = false
+			seekerW.Looped = false
+			tMW.Looped = false
+			local tCry1 = triggerC.Cry
+			local tComfurt1 = tMaster.comfort
+			local hComfurt1 = seeker.comfort
+			local tCry = triggerCHumanoid:LoadAnimation(tCry1)
+			local tComfurt = tMasterHumanoid:LoadAnimation(tComfurt1)
+			local hComfurt = seekerHumanoid:LoadAnimation(hComfurt1)
+			tCry:Play()
+			SFX.TriggerCrying:Play()
+			tComfurt:Play()
+			hComfurt:Play()
+			tCry.Looped = false
+			tComfurt.Looped = false
+			hComfurt.Looped = false
+			local deadLight = workspace.deadLight
+			local spark = deadLight.Debris
+			for i,particles in pairs(spark:GetDescendants()) do
+				if particles:IsA("ParticleEmitter") then
+					particles:Emit(particles:GetAttribute("EmitCount"))
+					SFX.lightShortCircuiting:Play()
+					deadLight.BrickColor = BrickColor.new("Black")
+					deadLight.Material = Enum.Material.Plastic
+					deadLight.PointLight.Enabled = false
+					wait(1)
+					SFX.lightShortCircuiting:Stop()
+				end
+			end
+			wait(2)
+			SFX.TriggerCrying:Stop()
+			tMW:Play()
+			seekerW:Play()
+			waitingC:Play()
+			triggerC:Destroy()
+			seeker:Destroy()
+			tMaster:Destroy()
+			debounce = nil
+			trap:Destroy()
+		end
+	end)
+end)
+
+
+
+
+Events.TrapperTrigger3.OnClientEvent:Connect(function()
+	--local des = game.Workspace.You1
+	--des:Destroy()
+	SFX.heartbeatNormal:Play()
+	SFX.heartbeatNormal.Looped = true
+	local trap = game.Workspace.note2Trigger
+	local debounce = nil
+	trap.Touched:Connect(function(hit)
+		local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+		if player and debounce == nil then
+			repeat wait() until game:IsLoaded()
+			SFX.heartbeatNormal.Looped = false
+			SFX.heartbeatNormal:Stop()
+			wait(1)
+			SFX.heartbeatIntense:Play()
+			SFX.heartbeatIntense.Looped = true
+			local Camera = game.Workspace.CurrentCamera
+			local rig = game.Workspace:WaitForChild("Animate")
+			userW.Looped = false
+			local uDT = user.Animation
+			local stanceU = user.stance
+			local stance = userHumanoid:LoadAnimation(stanceU)
+			local UDT = userHumanoid:LoadAnimation(uDT)
+			waitingK.Looped = false
+			local tDT = triggerK.Animation
+			local DTP = triggerKHumanoid:LoadAnimation(tDT)
+			tagW.Looped = false
+			local tADT = tag.Animation
+			local TADT = tagHumanoid:LoadAnimation(tADT)
+			UDT:Play()
+			TADT:Play()
+			local plr = game.Players.LocalPlayer
+			local EDposition = Vector3.new(-201.57, 0.5, -46.06)
+			plr.Character:MoveTo(EDposition)
+			Camera.CameraType = Enum.CameraType.Attach
+			Camera.CameraSubject = rig.Head
+			wait(3)
+			DTP:Play()
+			local portala = game.Workspace.Kportalm
+			local portalb = game.Workspace.Kportalb
+			portala.Transparency = 0
+			portalb.Transparency = 0
+			local pathToDeb = workspace.BallAnim.explosionS.Debris
+			local pathToRip = workspace.BallAnim.explosionS.FloorRipples
+			local pathToLight = workspace.BallAnim.explosionS.LightFlash
+			for i,Particles in pairs(pathToDeb:GetDescendants()) do
+				if Particles:IsA("ParticleEmitter") then
+					Particles:Emit(Particles:GetAttribute("EmitCount"))
+				end
+			end
+			for e,Ripples in pairs(pathToRip:GetDescendants()) do
+				if Ripples:IsA("ParticleEmitter") then
+					Ripples:Emit(Ripples:GetAttribute("EmitCount"))
+				end
+			end
+			for x,Light in pairs(pathToLight:GetDescendants()) do
+				if Light:IsA("ParticleEmitter") then
+					Light:Emit(Light:GetAttribute("EmitCount"))
+				end
+			end
+			DTP.Looped = false
+			UDT.Looped = false
+			TADT.Looped = false
+			--task.wait(1)
+			--local cams = game.Workspace.MorCams
+			--Camera.CameraType = Enum.CameraType.Scriptable
+			--Camera.CameraSubject = cams.end1
+			--local fastest = TweenInfo.new(.5,Enum.EasingStyle.Circular,Enum.EasingDirection.In,0,false,0)
+			--ts:Create(Camera,fastest,{CFrame = cams.end1.CFrame}):Play()
+			--Camera.CFrame = cams.end1.CFrame
+			--UDT:Stop()
+			--stance:Play()
+			wait(2.25)
+			blackFrame.Visible = true
+			local fastest = TweenInfo.new(.5,Enum.EasingStyle.Back,Enum.EasingDirection.In,0,false,0)
+			ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+			wait(3)
+			UDT:Stop()
+			--local del = game.Workspace:WaitForChild("Animate")
+			--del:Destroy()
+			local cams = game.Workspace.MorCams
+			local tw = TweenInfo.new(3,Enum.EasingStyle.Sine,Enum.EasingDirection.In,0,false,0)
+			local fast = TweenInfo.new(1,Enum.EasingStyle.Back,Enum.EasingDirection.In,0,false,0)
+			local fastest = TweenInfo.new(.5,Enum.EasingStyle.Back,Enum.EasingDirection.In,0,false,0)
+			Camera.CameraType = Enum.CameraType.Scriptable
+			wait(3)
+			Camera.CFrame = cams.end1.CFrame
+			ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+			--ts:Create(Camera,fast,{CFrame = cams.end1.CFrame}):Play()
+			ts:Create(Camera,tw,{CFrame = cams.end2.CFrame}):Play()
+			wait(3)
+			local remMe = script.Parent["RememberMe?"]
+			remMe.Enabled = true
+			wait(3)
+			local player = game.Players.LocalPlayer
+			--BadgeService:AwardBadge(game.Players.LocalPlayer.UserId, 3629190016498351) --/Trigger's Special Badge
+			--if BadgeService:UserHasBadgeAsync(game.Players.LocalPlayer.UserId, 2347532610076482) then--/Regular Maze Badge
+				Teleporter:Teleport(TeleportID)
+			--else
+			--	BadgeService:AwardBadge(game.Players.LocalPlayer.UserId, 2347532610076482)
+			--	Teleporter:Teleport(TeleportID)
+			--end
+			print("Do you remember him?")
+			player:Kick("Do you remember him?")
+			debounce = nil
+		end
+	end)
+end)
+
+
+
+
+Events.SecertEvent2.OnClientEvent:Connect(function()
+	--local blackFrame = script.Parent.DialougeUI.lackyFramey
+	player.Character:WaitForChild('Humanoid').WalkSpeed = 0
+	repeat wait() until game:IsLoaded()
+	ts:Create(blackFrame,ti,{BackgroundTransparency = 0}):Play()
+	wait(5)
+	local monsterDialouge = script.Parent.DialougeUI.dialougeM
+	local twInf = TweenInfo.new(
+		5,
+		Enum.EasingStyle.Cubic,
+		Enum.EasingDirection.Out,
+		0,
+		false,
+		0
+		
+	)
+	
+	local tw = TweenInfo.new(
+		
+		3,
+		Enum.EasingStyle.Sine,
+		Enum.EasingDirection.In,
+		0,
+		false,
+		0
+		
+	)
+	
+	local fast = TweenInfo.new(
+		
+		1,
+		Enum.EasingStyle.Back,
+		Enum.EasingDirection.In,
+		0,
+		false,
+		0
+		
+		
+	)
+	
+	local fastest = TweenInfo.new(
+		
+		.5,
+		Enum.EasingStyle.Circular,
+		Enum.EasingDirection.In,
+		0,
+		false,
+		0
+		
+		
+	)
+	
+	local line = TweenInfo.new(
+		
+		3,
+		Enum.EasingStyle.Linear,
+		Enum.EasingDirection.In,
+		0,
+		false,
+		0
+		
+		
+	)
+	
+	local lineO = TweenInfo.new(
+		
+		3,
+		Enum.EasingStyle.Linear,
+		Enum.EasingDirection.Out,
+		0,
+		false,
+		0
+	)
+	
+	local camFolder = workspace.seceveCams
+	local camera = workspace.CurrentCamera
+	local tAnim1 = workspace.Tmaster.tWait
+	local tAnim2 = workspace.Tmaster.tTV
+	local tHumanoid = workspace.Tmaster.Humanoid
+	local tWaiting = tHumanoid:LoadAnimation(tAnim1)
+	local tTV = tHumanoid:LoadAnimation(tAnim2)
+	tWaiting:Play()
+	tWaiting.Looped = true
+	
+	
+	local hnsAnim1 = workspace.hnSeeker.hnsWait
+	local hnsAnim2 = workspace.hnSeeker.hnsTV
+	local hnsAnim3 = workspace.hnSeeker.hnsStand
+	local hnsAnim4 = workspace.hnSeeker.hnsGrab
+	local hnsHumanoid = workspace.hnSeeker.Humanoid
+	local hnsWaiting = hnsHumanoid:LoadAnimation(hnsAnim1)
+	local hnsTV = hnsHumanoid:LoadAnimation(hnsAnim2)
+	local hnsStand = hnsHumanoid:LoadAnimation(hnsAnim3)
+	local hnsGrab = hnsHumanoid:LoadAnimation(hnsAnim4)
+	hnsWaiting:Play()
+	hnsWaiting.Looped = true
+	
+	local uAnim1 = workspace.You2.u2Wake
+	local uAnim2 = workspace.You2.ulookUp
+	local uAnim3 = workspace.You2.uScared
+	local uHumanoid = workspace.You2.Humanoid
+	local uWaiting = uHumanoid:LoadAnimation(uAnim1)
+	local uLook = uHumanoid:LoadAnimation(uAnim2)
+	local uScared = uHumanoid:LoadAnimation(uAnim3)
+	uWaiting:Play()
+	uWaiting.Looped = true
+	
+	local function animateGate()
+		local a = workspace.GateAnim.SummoningGate.MOD.Path.A
+		local b = workspace.GateAnim.SummoningGate.MOD.Path.B
+		local c = workspace.GateAnim.SummoningGate.MOD.Path.C
+		local d = workspace.GateAnim.SummoningGate.MOD.Path.D
+		local e = workspace.GateAnim.SummoningGate.MOD.Path.E
+		local f = workspace.GateAnim.SummoningGate.MOD.Path.F
+		local g = workspace.GateAnim.SummoningGate.MOD.Path.G
+		local h = workspace.GateAnim.SummoningGate.MOD.Path.H
+		local i = workspace.GateAnim.SummoningGate.MOD.Path.I
+		local j = workspace.GateAnim.SummoningGate.MOD.Path.J
+		local k = workspace.GateAnim.SummoningGate.MOD.Path.K
+		local l = workspace.GateAnim.SummoningGate.MOD.Path.L
+		local m = workspace.GateAnim.SummoningGate.MOD.Path.M
+		local n = workspace.GateAnim.SummoningGate.MOD.Path.N
+		local o = workspace.GateAnim.SummoningGate.MOD.Path.O
+		local p = workspace.GateAnim.SummoningGate.MOD.Path.P
+		local q = workspace.GateAnim.SummoningGate.MOD.Path.Q
+		local r = workspace.GateAnim.SummoningGate.MOD.Path.R
+		local s = workspace.GateAnim.SummoningGate.MOD.Model.S
+		local t = workspace.GateAnim.SummoningGate.MOD.Model.T
+		local u = workspace.GateAnim.SummoningGate.MOD.Model.U
+		local v = workspace.GateAnim.SummoningGate.MOD.Model.V
+		local w = workspace.GateAnim.SummoningGate.MOD.Model.W
+		local x = workspace.GateAnim.SummoningGate.MOD.Model.X
+		local y = workspace.GateAnim.SummoningGate.tee
+		local z = workspace.GateAnim.SummoningGate.te
+		a.Transparency = 0
+		b.Transparency = 0
+		c.Transparency = 0
+		d.Transparency = 0
+		e.Transparency = 0
+		f.Transparency = 0
+		g.Transparency = 0
+		h.Transparency = 0
+		i.Transparency = 0
+		j.Transparency = 0
+		k.Transparency = 0
+		l.Transparency = 0
+		m.Transparency = 0
+		n.Transparency = 0
+		o.Transparency = 0
+		p.Transparency = 0
+		q.Transparency = 0
+		r.Transparency = 0
+		s.Transparency = 0
+		t.Transparency = 0
+		u.Transparency = 0
+		v.Transparency = 0
+		w.Transparency = 0
+		x.Transparency = 0
+		y.Transparency = 0
+		z.Transparency = 0
+		local pathToRE = workspace.GateAnim.SummoningGate.MOD.Model.T.static.RE
+		local pathToHE = workspace.GateAnim.SummoningGate.MOD.Model.T.static.HE
+		if pathToRE:IsA("ParticleEmitter") then
+			pathToRE.Enabled = true
+		end
+		if pathToHE:IsA("ParticleEmitter") then
+			pathToHE.Enabled = true
+		end
+		
+	end
+	
+	local function animateBall1()
+		local goal = {}
+		goal.CFrame = game.Workspace.BallAnim.TVAnim.SummonerTAEP.CFrame
+		
+		local anim2 = ts:Create(game.Workspace.BallAnim.TVAnim.Summoner,fast,goal)
+		anim2:Play()
+		
+	end
+	
+	
+	local function blackCage()
+		local Cage1 = workspace["DomainExpansion.EnclosedBox"].WallA
+		local Cage2 = workspace["DomainExpansion.EnclosedBox"].WallB
+		local Cage3 = workspace["DomainExpansion.EnclosedBox"].WallC
+		local Cage4 = workspace["DomainExpansion.EnclosedBox"].WallD
+		local Cage5 = workspace["DomainExpansion.EnclosedBox"].WallE
+		Cage1.Transparency = 0
+		Cage2.Transparency = 0
+		Cage3.Transparency = 0
+		Cage4.Transparency = 0
+		Cage5.Transparency = 0
+	end
+	
+	camera.CameraType = Enum.CameraType.Scriptable
+	camera.CFrame = camFolder["eventCam-LeftSideofCam1"].CFrame
+	wait(2)
+	ts:Create(blackFrame,ti,{BackgroundTransparency = 1}):Play()
+	ts:Create(camera,twInf,{CFrame = camFolder["eventCam-RightSideofCam1"].CFrame}):Play()
+	uWaiting.Looped = false
+	uLook:Play()
+	dialouge.Text = "A Nightmare. . wait when did I fall asleep?"
+	wait(3)
+	dialouge.Text = ""
+	ts:Create(camera,tw,{CFrame = camFolder.eventCam1.CFrame}):Play()
+	uScared:Play()
+	dialouge.Text = "WHO'RE YOU?!"
+	ts:Create(camera,fast,{CFrame = camFolder.eventCam2.CFrame}):Play()
+	wait(2)
+	dialouge.Text = "What.. What is that?!"
+	camera.CFrame = camFolder["eventCam-BottomViewofCam2"].CFrame
+	wait(1)
+	ts:Create(camera,tw,{CFrame = camFolder["eventCam-ZoominofBottomCam"].CFrame}):Play()
+	wait(2)
+	camera.CFrame = camFolder["eventCam-LeftSideofCam2"].CFrame
+	--ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+	--ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+	dialouge.Text = "What're you doing?!"
+	hnsWaiting.Looped = false
+	wait(.5)
+	hnsGrab:Play()
+	wait(.5)
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+	wait(1)
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+	dialouge.Text = ""
+	camera.CFrame = camFolder["eventCam-hnsFrontView"].CFrame
+	blackFrame.Visible = false
+	monsterDialouge.Text = "Brother. Wants. To. SEE. You."
+	ts:Create(camera,line,{CFrame = camFolder["eventCam-hnsFrontViewZoomIN"].CFrame}):Play()
+	wait(1)
+	hnsTV:Play()
+	animateBall1()
+	hnsStand:Play()
+	hnsStand.Looped = true
+	ts:Create(camera,fastest,{CFrame = camFolder.eventCam3.CFrame}):Play()
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+	wait(1)
+	local function emitting()
+		--local pathToEmitD1 = workspace.BallAnim.Explosion.Debris.BlackDebrisFar
+		--local pathToEmitD2 = workspace.BallAnim.Explosion.Debris.BlackDebrisNear
+		--local floorRip = workspace.BallAnim.Explosion.FloorRipples.BlackCircles
+		--local FlashP = workspace.BallAnim.Explosion.LightFlash.PurpFlash
+		--local FlashB = workspace.BallAnim.Explosion.LightFlash.BlackFlash
+		local pathToDeb = workspace.BallAnim.Explosion.Debris
+		local pathToRip = workspace.BallAnim.Explosion.FloorRipples
+		local pathToLight = workspace.BallAnim.Explosion.LightFlash
+		for i,Particles in pairs(pathToDeb:GetDescendants()) do
+			if Particles:IsA("ParticleEmitter") then
+				Particles:Emit(Particles:GetAttribute("EmitCount"))
+			end
+		end
+		for e,Ripples in pairs(pathToRip:GetDescendants()) do
+			if Ripples:IsA("ParticleEmitter") then
+				Ripples:Emit(Ripples:GetAttribute("EmitCount"))
+			end
+		end
+		for x,Light in pairs(pathToLight:GetDescendants()) do
+			if Light:IsA("ParticleEmitter") then
+				Light:Emit(Light:GetAttribute("EmitCount"))
+			end
+		end
+		
+	end
+	emitting()
+	animateGate()
+	blackCage()
+	wait(3)
+	tWaiting.Looped = false
+	--camera.CFrame = camFolder.eventCam4.CFrame
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+	tTV:Play()
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 0}):Play()
+	ts:Create(camera,fast,{CFrame = camFolder["eventCam-RightSideofCam3"].CFrame}):Play()
+	ts:Create(blackFrame,fastest,{BackgroundTransparency = 1}):Play()
+	wait(1)
+	ts:Create(camera,line,{CFrame = camFolder["eventCam-CloseUpofCam3"].CFrame}):Play()
+	wait(1)
+	ts:Create(camera,lineO,{CFrame = camFolder.eventCam4.CFrame}):Play()
+	ts:Create(camera,twInf,{CFrame = camFolder.eventCam5.CFrame}):Play()
+	local finalPanel = script.Parent.LetsPlay
+	wait(1)
+	finalPanel.Enabled = true
+	--BadgeService:AwardBadge(game.Players.LocalPlayer.UserId, BadgeID)
+	Teleporter:Teleport(TeleportID)
+	
+end)
